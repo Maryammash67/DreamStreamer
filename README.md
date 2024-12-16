@@ -7,3 +7,4 @@ Frontend development HTML, CSS and Javascript for responsive styling Framer Moti
 
 
 # AWS Solution Design Diagram for DreamStreamer
+![Dream Streamer Image](cloud/images/dreamstreamer-customer-final-v111-2.png)
