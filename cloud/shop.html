@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamSteamer</title>
+    <!-- magnific-popup css cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <!-- font-awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="style1.css">
+
+    <style>
+        /* Music Collection Grid */
+        #musicCollection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around; /* Centers items horizontally */
+        }
+    
+        /* Individual song card */
+        .box {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Card width */
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+        .box .image img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #ccc;
+        }
+    
+        .box .content {
+            padding: 15px;
+        }
+    
+        .box .content h3, .box .content h4, .box .content p {
+            margin: 10px 0;
+        }
+    
+        /* Buttons styling */
+        .box .buttons {
+            padding: 15px;
+            text-align: center;
+        }
+    
+        .box .btn {
+            padding: 10px 20px;
+            border: none;
+            background-color: #d74e6a;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    
+        .box .btn:hover {
+            background-color: #d74e6a;
+        }
+    
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            #musicCollection {
+                justify-content: center;
+            }
+    
+            .box {
+                width: 100%; /* Full width on smaller screens */
+                max-width: 400px;
+            }
+        }
+
+        /* Filter container */
+    .filter-container {
+        display: flex;
+        justify-content: center; /* Center the filter dropdowns and button */
+        align-items: center;
+        gap: 15px; /* Space between dropdowns and button */
+        margin: 20px 0;
+        flex-wrap: wrap; /* Wrap if needed on smaller screens */
+    }
+
+    /* Filter dropdowns and button */
+    .filter-container select, .filter-container button {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .filter-container button {
+        background-color: #d74e6a;
+        color: white;
+        cursor: pointer;
+        border: none;
+    }
+
+    .filter-container button:hover {
+        background-color: #d74e6a;
+    }
+    .album-image {
+    width: 150px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    object-fit: cover; /* Maintain aspect ratio, and fill the area */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+
+    /* Responsive filter section for small screens */
+    @media (max-width: 768px) {
+        .filter-container {
+            justify-content: center;
+            flex-direction: column; /* Stack filters vertically on small screens */
+            align-items: stretch;
+        }
+
+        .filter-container select, .filter-container button {
+            width: 100%; /* Full width dropdowns and button */
+            max-width: 300px; /* Optional max-width */
+            margin-bottom: 10px;
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    
+
+    <!-- header -->
+
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-music"></i> DreamSteamer</a>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="https://dreamstemmer.auth.us-east-1.amazoncognito.com/logout?client_id=79dmdomhmdllqggccvgh7j7q5n&logout_uri=http%3A%2F%2Flocalhost%3A5500%2Findex.html">Logout</a>
+        </nav>
+
+        <div id="menu" class="fas fa-bars"></div>
+
+    </header>
+
+    <!-- end -->
+
+    <!-- home -->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>get the <br> new songs</h3>
+            <!-- <a href="#" class="btn">show more</a> -->
+        </div>
+
+    </section>
+
+    <!-- end -->
+
+
+    <!-- shop -->
+
+     <!-- <section class="gallery" id="gallery">
+
+        <h1 class="heading">our shop</h1>
+
+        <ul class="controls">
+            <li class="button active" data-filter="all">all</li>
+            <li class="button" data-filter="music">music</li>
+            <li class="button" data-filter="party">party</li>
+            <li class="button" data-filter="performance">performance</li>
+            <li class="button" data-filter="stageshow">stage show</li>
+        </ul>
+
+        
+
+    </section>
+
+    <section class="shop" id="shop">
+        <h1 class="heading">Our Music Collection</h1>
+        <div class="box-container" id="musicCollection">
+        </div>
+    </section> -->
+
+    <div id="filterSection" class="filter-container">
+        <select id="albumFilter" onchange="filterMusic()">
+            <option value="all">All Albums</option>
+        </select>
+    
+        <select id="artistFilter" onchange="filterMusic()">
+            <option value="all">All Artists</option>
+        </select>
+    
+        <select id="genreFilter" onchange="filterMusic()">
+            <option value="all">All Genres</option>
+        </select>
+    
+        <button class="btn btn-primary" onclick="filterMusic()">Filter</button>
+    </div>
+    
+
+    <section class="shop" id="shop">
+        <h1 class="heading">Our Music Collection</h1>
+    <!-- Music Collection Section -->
+    <div id="musicCollection"  class="box-container">
+        <!-- Song cards will be dynamically added here -->
+    </div>
+
+</section>
+
+
+
+    
+    
+
+
+
+    <!-- footer -->
+
+    <section class="footer">
+
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+
+        <div class="credit">created by <span>DreamStemmer</span> | all rights reserved!</div>
+
+    </section>
+    <!-- <div id="musicCollection"></div> -->
+
+
+
+
+
+    <!-- end -->
+
+<!-- script for loading showing music -->
+    <script>
+		window.onload = function () {
+			fetchAlbumsAndSongs();
+		};
+	</script>
+
+   
+<!-- script for showing music -->
+<!-- <script>
+    let albumsData = {}; // To store album data fetched from the album table
+
+function fetchAlbumsAndSongs() {
+    // Fetch album data first
+    fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(albums => {
+        // Store albums in an object using album_id as the key for easy lookup
+        albums.forEach(album => {
+            albumsData[album.album_id] = album;
+        });
+        
+        // Now fetch the songs after albums are loaded
+        fetchSongs();
+    })
+    .catch(error => {
+        console.error('Error fetching albums:', error);
+    });
+}
+
+function fetchSongs() {
+    fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/songs', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(songs => {
+        console.log('Songs data:', songs); // Log the song data to the console
+
+        const musicCollection = document.getElementById('musicCollection');
+        musicCollection.innerHTML = ''; // Clear previous content
+
+        // Loop through the fetched songs
+        songs.forEach(song => {
+            // Create card for each song
+            const songCard = document.createElement('div');
+            songCard.className = 'box';
+
+            // Get album data based on song's album_id
+            const album = albumsData[song.album_id];
+
+            // Album Art
+            const albumImageDiv = document.createElement('div');
+            albumImageDiv.className = 'image';
+            const albumImage = document.createElement('img');
+            albumImage.src = album?.AlbumArtURL || 'images/default-album-art.jpg'; // Use default if AlbumArtURL is missing
+            albumImage.alt = album?.AlbumName || 'Album Art';
+            albumImageDiv.appendChild(albumImage);
+
+            // Content for the song
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content';
+
+               // Audio Player for the Song
+               if (song.song_url) {
+                const audioPlayer = document.createElement('audio');
+                audioPlayer.controls = true;  // Adds play/pause controls to the player
+                const audioSource = document.createElement('source');
+                audioSource.src = song.song_url;
+                audioSource.type = 'audio/mpeg';  // Assuming the song is in MP3 format
+                audioPlayer.appendChild(audioSource);
+
+                contentDiv.appendChild(audioPlayer);
+            } else {
+                const noTrackMessage = document.createElement('p');
+                noTrackMessage.innerText = 'No track available';
+                contentDiv.appendChild(noTrackMessage);
+            }
+
+            // Song and Album Details
+            const songName = document.createElement('h3');
+            songName.innerText = song.song_name || 'Unknown Song'; // Fallback if song_name is missing
+            contentDiv.appendChild(songName);
+
+            const albumName = document.createElement('h4');
+            albumName.innerText = `Album: ${album?.AlbumName || 'Unknown Album'}`; // Fallback if AlbumName is missing
+            contentDiv.appendChild(albumName);
+
+            const artists = document.createElement('p');
+            artists.innerText = `Artists: ${album?.Artists || 'Unknown Artists'}`; // Get artists from album table
+            contentDiv.appendChild(artists);
+
+            const genre = document.createElement('p');
+            genre.innerText = `Genre: ${album?.Genre || 'Unknown Genre'}`; // Get genre from album table
+            contentDiv.appendChild(genre);
+
+            // Album Year
+            const albumYear = document.createElement('p');
+            albumYear.innerText = `Year: ${album?.AlbumYear || 'Unknown Year'}`;
+            contentDiv.appendChild(albumYear);
+
+            // Band Composition
+            const bandComposition = document.createElement('p');
+            bandComposition.innerText = `Band Composition: ${album?.BandComposition || 'Unknown Composition'}`;
+            contentDiv.appendChild(bandComposition);
+
+            // Track Labels
+            const trackLabels = document.createElement('p');
+            trackLabels.innerText = `Track Labels: ${album?.TrackLabels || 'Unknown Labels'}`;
+            contentDiv.appendChild(trackLabels);
+
+         
+
+            // Add Update and Delete Buttons
+            const buttonDiv = document.createElement('div');
+            buttonDiv.className = 'buttons';
+
+            // Update Button
+            const updateButton = document.createElement('button');
+            updateButton.className = 'btn btn-warning';
+            updateButton.innerText = 'BUY';
+            updateButton.onclick = () => openUpdateModal(song);
+            buttonDiv.appendChild(updateButton);
+
+          
+
+            contentDiv.appendChild(buttonDiv);
+
+            // Append content to the song card
+            songCard.appendChild(albumImageDiv);
+            songCard.appendChild(contentDiv);
+            
+            // Append the song card to the collection
+            musicCollection.appendChild(songCard);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching songs:', error);
+    });
+}
+
+// Call this function when the page loads to fetch both albums and songs
+window.onload = function () {
+    fetchAlbumsAndSongs();
+};
+
+</script> -->
+
+<script>
+    let albumsData = {}; // To store album data fetched from the album table
+
+    // Function to fetch albums and songs
+    function fetchAlbumsAndSongs() {
+        fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(albums => {
+            albums.forEach(album => {
+                albumsData[album.album_id] = album;
+            });
+
+            // Populate the filter dropdowns for albums, artists, and genres
+            populateFilters(albums);
+
+            // Now fetch the songs after albums are loaded
+            fetchSongs();
+        })
+        .catch(error => {
+            console.error('Error fetching albums:', error);
+        });
+    }
+
+    // Function to fetch and display songs
+    function fetchSongs() {
+        fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/songs', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(songs => {
+            console.log('Songs data:', songs); // Log the song data to the console
+            const musicCollection = document.getElementById('musicCollection');
+            musicCollection.innerHTML = ''; // Clear previous content
+
+            // Loop through the fetched songs and create song cards
+            songs.forEach(song => {
+                const album = albumsData[song.album_id]; // Get album data based on song's album_id
+
+                // Create a song card
+                const songCard = document.createElement('div');
+                songCard.className = 'box';
+
+                // Album Art
+                const albumImageDiv = document.createElement('div');
+                albumImageDiv.className = 'image';
+                const albumImage = document.createElement('img');
+                albumImage.src = album?.AlbumArtURL || 'images/default-album-art.jpg'; // Use default if AlbumArtURL is missing
+                albumImage.alt = album?.AlbumName || 'Album Art';
+                albumImage.style.width = '150px';  // Fixed width
+                albumImage.style.height = '150px'; // Fixed height
+                albumImage.style.objectFit = 'cover'; 
+                albumImageDiv.appendChild(albumImage);
+
+                // Content for the song
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'content';
+
+                // Audio Player
+                if (song.song_url) {
+                    const audioPlayer = document.createElement('audio');
+                    audioPlayer.controls = true;
+                    audioPlayer.style.width = '270px';
+                    const audioSource = document.createElement('source');
+                    audioSource.src = song.song_url;
+                    audioSource.type = 'audio/mpeg';
+                    audioPlayer.appendChild(audioSource);
+                    contentDiv.appendChild(audioPlayer);
+                } else {
+                    const noTrackMessage = document.createElement('p');
+                    noTrackMessage.innerText = 'No track available';
+                    contentDiv.appendChild(noTrackMessage);
+                }
+
+                // Song and Album Details
+                const songName = document.createElement('h3');
+                songName.innerText = song.song_name || 'Unknown Song';
+                contentDiv.appendChild(songName);
+
+                const albumName = document.createElement('h4');
+                albumName.innerText = `Album: ${album?.AlbumName || 'Unknown Album'}`;
+                contentDiv.appendChild(albumName);
+
+                const artists = document.createElement('p');
+                artists.innerText = `Artists: ${album?.Artists || 'Unknown Artists'}`;
+                contentDiv.appendChild(artists);
+
+                const genre = document.createElement('p');
+                genre.innerText = `Genre: ${album?.Genre || 'Unknown Genre'}`;
+                contentDiv.appendChild(genre);
+
+                const albumYear = document.createElement('p');
+                albumYear.innerText = `Year: ${album?.AlbumYear || 'Unknown Year'}`;
+                contentDiv.appendChild(albumYear);
+
+                const bandComposition = document.createElement('p');
+                bandComposition.innerText = `Band Composition: ${album?.BandComposition || 'Unknown Composition'}`;
+                contentDiv.appendChild(bandComposition);
+
+                const trackLabels = document.createElement('p');
+                trackLabels.innerText = `Track Labels: ${album?.TrackLabels || 'Unknown Labels'}`;
+                contentDiv.appendChild(trackLabels);
+
+                // Add Update Button
+                const buttonDiv = document.createElement('div');
+                buttonDiv.className = 'buttons';
+
+                const updateButton = document.createElement('button');
+                updateButton.className = 'btn btn-warning';
+                updateButton.innerText = 'BUY';
+
+                // Check if song's album_id and song_id are available
+                if (song.album_id && song.song_id && song.AlbumName) {
+                    updateButton.onclick = () => {
+                        const user_id = localStorage.getItem('user_id'); // Get the user_id from local storage
+                        if (!user_id) {
+                            alert("Please log in to make a purchase.");
+                            return;
+                        }
+                        // Redirect to payment page with album_id and song_id
+                        window.location.href = `payment.html?album_id=${song.album_id}&song_id=${song.song_id}&AlbumName=${song.AlbumName}`;
+                    };
+                } else {
+                    updateButton.disabled = true; // Disable the button if IDs are not available
+                }
+
+                buttonDiv.appendChild(updateButton);
+                contentDiv.appendChild(buttonDiv);
+
+                // Append the content and image to the song card
+                songCard.appendChild(albumImageDiv);
+                songCard.appendChild(contentDiv);
+
+                // Append the song card to the collection
+                musicCollection.appendChild(songCard);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching songs:', error);
+        });
+    }
+
+    // Function to populate the album, artist, and genre filters
+    function populateFilters(albums) {
+        const albumFilter = document.getElementById('albumFilter');
+        const artistFilter = document.getElementById('artistFilter');
+        const genreFilter = document.getElementById('genreFilter');
+
+        const albumsSet = new Set();
+        const artistsSet = new Set();
+        const genresSet = new Set();
+
+        albums.forEach(album => {
+            albumsSet.add(album.AlbumName);
+            artistsSet.add(album.Artists);
+            genresSet.add(album.Genre);
+        });
+
+        albumsSet.forEach(albumName => {
+            const option = document.createElement('option');
+            option.value = albumName;
+            option.innerText = albumName;
+            albumFilter.appendChild(option);
+        });
+
+        artistsSet.forEach(artistName => {
+            const option = document.createElement('option');
+            option.value = artistName;
+            option.innerText = artistName;
+            artistFilter.appendChild(option);
+        });
+
+        genresSet.forEach(genreName => {
+            const option = document.createElement('option');
+            option.value = genreName;
+            option.innerText = genreName;
+            genreFilter.appendChild(option);
+        });
+    }
+
+    // Function to filter music based on selected album, artist, and genre
+    // function filterMusic() {
+    //     const selectedAlbum = document.getElementById('albumFilter').value;
+    //     const selectedArtist = document.getElementById('artistFilter').value;
+    //     const selectedGenre = document.getElementById('genreFilter').value;
+
+    //     const musicCollection = document.getElementById('musicCollection');
+    //     musicCollection.innerHTML = ''; // Clear the music collection display
+
+    //     fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/songs', {
+    //         method: 'GET'
+    //     })
+    //     .then(response => response.json())
+    //     .then(songs => {
+    //         songs.forEach(song => {
+    //             const album = albumsData[song.album_id];
+
+    //             // Apply filters
+    //             if ((selectedAlbum === 'all' || album.AlbumName === selectedAlbum) &&
+    //                 (selectedArtist === 'all' || album.Artists === selectedArtist) &&
+    //                 (selectedGenre === 'all' || album.Genre === selectedGenre)) {
+
+    //                 // Create song card (similar to fetchSongs function)
+    //                 const songCard = document.createElement('div');
+    //                 songCard.className = 'box';
+
+    //                 const albumImageDiv = document.createElement('div');
+    //                 albumImageDiv.className = 'image';
+    //                 const albumImage = document.createElement('img');
+    //                 albumImage.src = album?.AlbumArtURL || 'images/default-album-art.jpg';
+    //                 albumImage.alt = album?.AlbumName || 'Album Art';
+    //                 albumImageDiv.appendChild(albumImage);
+
+    //                 const contentDiv = document.createElement('div');
+    //                 contentDiv.className = 'content';
+
+    //                 // Audio player
+    //                 if (song.song_url) {
+    //                     const audioPlayer = document.createElement('audio');
+    //                     audioPlayer.controls = true;
+    //                     const audioSource = document.createElement('source');
+    //                     audioSource.src = song.song_url;
+    //                     audioSource.type = 'audio/mpeg';
+    //                     audioPlayer.appendChild(audioSource);
+    //                     contentDiv.appendChild(audioPlayer);
+    //                 } else {
+    //                     const noTrackMessage = document.createElement('p');
+    //                     noTrackMessage.innerText = 'No track available';
+    //                     contentDiv.appendChild(noTrackMessage);
+    //                 }
+
+    //                 // Song and Album details
+    //                 const songName = document.createElement('h3');
+    //                 songName.innerText = song.song_name || 'Unknown Song';
+    //                 contentDiv.appendChild(songName);
+
+    //                 const albumName = document.createElement('h4');
+    //                 albumName.innerText = `Album: ${album?.AlbumName || 'Unknown Album'}`;
+    //                 contentDiv.appendChild(albumName);
+
+    //                 const artists = document.createElement('p');
+    //                 artists.innerText = `Artists: ${album?.Artists || 'Unknown Artists'}`;
+    //                 contentDiv.appendChild(artists);
+
+    //                 const genre = document.createElement('p');
+    //                 genre.innerText = `Genre: ${album?.Genre || 'Unknown Genre'}`;
+    //                 contentDiv.appendChild(genre);
+
+    //                 const albumYear = document.createElement('p');
+    //                 albumYear.innerText = `Year: ${album?.AlbumYear || 'Unknown Year'}`;
+    //                 contentDiv.appendChild(albumYear);
+
+    //                 const bandComposition = document.createElement('p');
+    //                 bandComposition.innerText = `Band Composition: ${album?.BandComposition || 'Unknown Composition'}`;
+    //                 contentDiv.appendChild(bandComposition);
+
+    //                 const trackLabels = document.createElement('p');
+    //                 trackLabels.innerText = `Track Labels: ${album?.TrackLabels || 'Unknown Labels'}`;
+    //                 contentDiv.appendChild(trackLabels);
+      
+    //                 // Add Update Button
+    //                 const buttonDiv = document.createElement('div');
+    //                 buttonDiv.className = 'buttons';
+
+    //                 const updateButton = document.createElement('button');
+    //                 updateButton.className = 'btn btn-warning';
+    //                 updateButton.innerText = 'BUY';
+    //                 updateButton.onclick = () => openUpdateModal(song);
+    //                 buttonDiv.appendChild(updateButton);
+
+    //                 contentDiv.appendChild(buttonDiv);
+
+    //                 songCard.appendChild(albumImageDiv);
+    //                 songCard.appendChild(contentDiv);
+
+    //                 musicCollection.appendChild(songCard);
+    //             }
+    //         });
+    //     })
+    //     .catch(error => {
+    //         console.error('Error filtering songs:', error);
+    //     });
+    // }
+
+    function filterMusic() {
+    const selectedAlbum = document.getElementById('albumFilter').value;
+    const selectedArtist = document.getElementById('artistFilter').value;
+    const selectedGenre = document.getElementById('genreFilter').value;
+
+    const musicCollection = document.getElementById('musicCollection');
+    musicCollection.innerHTML = ''; // Clear the music collection display
+
+    fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/songs', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(songs => {
+        songs.forEach(song => {
+            const album = albumsData[song.album_id];
+
+            // Apply filters
+            if ((selectedAlbum === 'all' || album?.AlbumName === selectedAlbum) &&
+                (selectedArtist === 'all' || album?.Artists === selectedArtist) &&
+                (selectedGenre === 'all' || album?.Genre === selectedGenre)) {
+
+                // Create song card (similar to fetchSongs function)
+                const songCard = document.createElement('div');
+                songCard.className = 'box';
+
+                const albumImageDiv = document.createElement('div');
+                albumImageDiv.className = 'image';
+                const albumImage = document.createElement('img');
+                albumImage.src = album?.AlbumArtURL || 'images/default-album-art.jpg';
+                albumImage.alt = album?.AlbumName || 'Album Art';
+                albumImage.style.width = '150px';  // Fixed width
+                albumImage.style.height = '150px'; // Fixed height
+                albumImage.style.objectFit = 'cover';
+                albumImageDiv.appendChild(albumImage);
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'content';
+
+                // Audio player
+                if (song.song_url) {
+                    const audioPlayer = document.createElement('audio');
+                    audioPlayer.controls = true;
+                    audioPlayer.style.width = '270px';
+                    const audioSource = document.createElement('source');
+                    audioSource.src = song.song_url;
+                    audioSource.type = 'audio/mpeg';
+                    audioPlayer.appendChild(audioSource);
+                    contentDiv.appendChild(audioPlayer);
+                } else {
+                    const noTrackMessage = document.createElement('p');
+                    noTrackMessage.innerText = 'No track available';
+                    contentDiv.appendChild(noTrackMessage);
+                }
+
+                // Song and Album details
+                const songName = document.createElement('h3');
+                songName.innerText = song.song_name || 'Unknown Song';
+                contentDiv.appendChild(songName);
+
+                const albumName = document.createElement('h4');
+                albumName.innerText = `Album: ${album?.AlbumName || 'Unknown Album'}`;
+                contentDiv.appendChild(albumName);
+
+                const artists = document.createElement('p');
+                artists.innerText = `Artists: ${album?.Artists || 'Unknown Artists'}`;
+                contentDiv.appendChild(artists);
+
+                const genre = document.createElement('p');
+                genre.innerText = `Genre: ${album?.Genre || 'Unknown Genre'}`;
+                contentDiv.appendChild(genre);
+
+                const albumYear = document.createElement('p');
+                albumYear.innerText = `Year: ${album?.AlbumYear || 'Unknown Year'}`;
+                contentDiv.appendChild(albumYear);
+
+                const bandComposition = document.createElement('p');
+                bandComposition.innerText = `Band Composition: ${album?.BandComposition || 'Unknown Composition'}`;
+                contentDiv.appendChild(bandComposition);
+
+                const trackLabels = document.createElement('p');
+                trackLabels.innerText = `Track Labels: ${album?.TrackLabels || 'Unknown Labels'}`;
+                contentDiv.appendChild(trackLabels);
+      
+                // Add Buy Button
+                const buttonDiv = document.createElement('div');
+                buttonDiv.className = 'buttons';
+
+                const updateButton = document.createElement('button');
+                updateButton.className = 'btn btn-warning';
+                updateButton.innerText = 'BUY';
+
+                // Check if song's album_id and song_id are available
+                if (song.album_id && song.song_id && song.AlbumName) {
+                    updateButton.onclick = () => {
+                        const user_id = localStorage.getItem('user_id'); // Get the user_id from local storage
+                        if (!user_id) {
+                            alert("Please log in to make a purchase.");
+                            return;
+                        }
+                        // Redirect to payment page with album_id and song_id
+                        window.location.href = `payment.html?album_id=${song.album_id}&song_id=${song.song_id}&AlbumName=${song.AlbumName}`;
+                    };
+                } else {
+                    updateButton.disabled = true; // Disable the button if IDs are not available
+                }
+
+                buttonDiv.appendChild(updateButton);
+                contentDiv.appendChild(buttonDiv);
+
+                songCard.appendChild(albumImageDiv);
+                songCard.appendChild(contentDiv);
+
+                musicCollection.appendChild(songCard);
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error filtering songs:', error);
+    });
+}
+
+    
+
+    // Initial call to fetch albums and songs
+    fetchAlbumsAndSongs();
+
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>

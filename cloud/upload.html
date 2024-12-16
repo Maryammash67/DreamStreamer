@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="admin.css">
+   
+	
+
+  
+
+	<title>DreamStreamer</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+	<a href="admin.html" class="brand">
+	<i class='bx bx-restaurant' style="color:black;"></i>
+			<span class="text" style="color:black;">DreamStreamer.</span>
+		</a>
+		<ul class="side-menu top" style="padding-left: 1px;">
+			<li >
+				<a href="admin.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+		
+			<li >
+				<a href="musicmanagment.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Music Managment</span>
+				</a>
+			</li>
+            <li class="active"></li>
+				<a href="upload.html">
+					<i class='bx bx-user' ></i>
+					<span class="text">Upload</span>
+				</a>
+			</li>
+		
+		</ul>
+		<ul class="side-menu"  style="padding-left: 1px;">
+			<li>
+				<a href="">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+            <li class="nav-item">
+        <a href="#" class="nav-link logout" onclick="confirmLogout()">
+            <i class='bx bxs-log-out-circle'></i>
+            <span class="text">Logout</span>
+        </a>
+        <form id="logout-form" action="" method="POST" class="d-none">
+            
+        </form>
+    </li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="" class="nav-link">Dashboard</a>
+			<form action="">
+				
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="" class="notification">
+				<i class='bx bxs-message' ></i>
+				<span class="num">3</span>
+			</a>
+			<a href="" class="profile">
+			<img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" alt="user-im" >
+			</a>
+		</nav>
+		<!-- end of NAVBAR -->
+
+		<!-- MAIN -->
+				<!-- MAIN -->
+				<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="admin.html">Home</a>
+						</li>
+                        <li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="musicmanagment.html">Music Managment</a>
+						</li>
+						<li></li>
+							<a class="active" href="upload.html">Upload</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+            <form>
+             
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                  </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+			
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Musics</h3>
+
+						<!-- Button trigger modal pop up -->
+
+
+						   
+
+
+
+
+    
+					</div>
+                     <div class="table-container">
+					<table>
+						<thead>
+							<tr>
+							<th>Name</th>
+							<th>Speciality</th>
+							<th>Image</th>
+							<th></th>
+							<th></th>
+							</tr>
+						</thead>
+                        <tbody id="chefTableBody">
+                       
+                           <tr id="" >
+                           
+                           
+                       <td></td>
+                       <td></td>
+                     
+                       <td>  <img src="" width="150" height="150"></td>
+                       <td>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#editModal" onclick="openEditModal()">
+                            <i class="bx bx-pencil bounce-icon" style="color: #449e3d; font-size: 24px;"></i>
+                             </a>
+                       </td>
+						<td> <a href=""><i class="bx bx-trash bounce-icon" style="color: #FF0000; font-size: 24px;" onclick="confirmDelete1(event)"></i></a></td>
+						</tr>
+						
+						</tbody>
+					</table>
+				</div>
+
+          		
+
+			</div>
+		</main>
+	</section>
+	<!-- CONTENT -->
+
+
+
+
+	
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/admin.js"></script>   
+  
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+
+
+
+	<link rel="stylesheet" href="admin.css">
+
+
+
+
+
+	<title>DreamStreamer</title>
+</head>
+
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="admin.html" class="brand">
+			<i class='bx bxs-music' style="color:black;"></i>
+			<span class="text" style="color:black;">DreamStreamer</span>
+		</a>
+		
+
+		<ul class="side-menu top" style="padding-left: 1px;">
+			<li>
+				<a href="admin.html">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+
+			<li class="active">
+				<a href="musicmanagment.html">
+					<i class='bx bx-user'></i>
+					<span class="text">Music Managment</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="song.html">
+					<i class='bx bx-user'></i>
+					<span class="text">Song Managment</span>
+				</a>
+			</li>
+			<li>
+				<a href="purchase.html">
+					<i class='bx bx-user'></i>
+					<span class="text">Purchase Managment</span>
+
+				</a>
+			</li>
+		
+
+		</ul>
+		<ul class="side-menu" style="padding-left: 1px;">
+			<li>
+				<a href="">
+					<i class='bx bxs-cog'></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="https://dreamstemmer.auth.us-east-1.amazoncognito.com/logout?client_id=79dmdomhmdllqggccvgh7j7q5n&logout_uri=http%3A%2F%2Flocalhost%3A5500%2Findex.html" class="nav-link logout" onclick="confirmLogout()">
+					<i class='bx bxs-log-out-circle'></i>
+					<span class="text">Logout</span>
+				</a>
+				<form id="logout-form" action="" method="POST" class="d-none">
+
+				</form>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<a href="" class="nav-link">Dashboard</a>
+			<form action="">
+
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="" class="notification">
+				<i class='bx bxs-message'></i>
+				<span class="num">3</span>
+			</a>
+			<a href="" class="profile">
+				<img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
+					alt="user-im">
+			</a>
+		</nav>
+		<!-- end of NAVBAR -->
+
+		<!-- MAIN -->
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li>
+							<a class="active" href="admin.html">Home</a>
+						</li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li>
+							<a class="active" href="musicmanagment.html">Music Managment</a>
+						</li>
+						<li></li>
+						<!-- <a class="active" href="upload.html">Upload</a> -->
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				Add Album
+			</button>
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Musics</h3>
+
+						<!-- Button trigger modal pop up -->
+
+
+						<!-- Modal for Add -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Add Album</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<form id="albumForm">
+											<div class="form-group">
+												<label for="albumName">Album Name</label>
+												<input type="text" class="form-control" id="albumName"
+													placeholder="Enter album name" required>
+											</div>
+											<div class="form-group">
+												<label for="albumYear">Album Year</label>
+												<input type="text" class="form-control" id="albumYear"
+													placeholder="Enter album year" required>
+											</div>
+											<div class="form-group">
+												<label for="genre">Genre</label>
+												<input type="text" class="form-control" id="genre"
+													placeholder="Enter genre" required>
+											</div>
+											<div class="form-group">
+												<label for="artists">Artists</label>
+												<input type="text" class="form-control" id="artists"
+													placeholder="Enter artists" required>
+											</div>
+											<div class="form-group">
+												<label for="trackLabels">Track Labels</label>
+												<input type="text" class="form-control" id="trackLabels"
+													placeholder="Enter track labels" required>
+											</div>
+											<div class="form-group">
+												<label for="bandComposition">Band Composition</label>
+												<input type="text" class="form-control" id="bandComposition"
+													placeholder="Enter band composition" required>
+											</div>
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="validatedCustomFile"
+													required>
+												<label class="custom-file-label" for="validatedCustomFile">Choose
+													file...</label>
+											</div>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+					</div>
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Album Name</th>
+									<th>Album Year</th>
+									<th>Genre</th>
+									<th>Artists</th>
+									<th>Track Labels</th>
+									<th>Band Composition</th>
+									<th>Image</th>
+									<th></th> <!-- For Update button -->
+									<th></th> <!-- For Delete button -->
+								</tr>
+							</thead>
+							<tbody id="albumTableBody">
+							</tbody>
+						</table>
+					</div>
+					<!-- 
+				<h2>View Albums</h2>
+				<div class="album-container" id="albumContainer"></div> -->
+
+				</div>
+		</main>
+	</section>
+	<!-- CONTENT -->
+
+
+
+
+	<!-- Bootstrap Modal for Editing Album -->
+	<div class="modal fade" id="editAlbumModal" tabindex="-1" aria-labelledby="editAlbumModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editAlbumModalLabel">Edit Album</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="editAlbumForm">
+						<input type="hidden" id="editAlbumId">
+						<div class="mb-3">
+							<label for="editAlbumName" class="form-label">Album Name</label>
+							<input type="text" class="form-control" id="editAlbumName" required>
+						</div>
+						<div class="mb-3">
+							<label for="editAlbumYear" class="form-label">Album Year</label>
+							<input type="number" class="form-control" id="editAlbumYear" required>
+						</div>
+						<div class="mb-3">
+							<label for="editGenre" class="form-label">Genre</label>
+							<input type="text" class="form-control" id="editGenre" required>
+						</div>
+						<div class="mb-3">
+							<label for="editArtists" class="form-label">Artists</label>
+							<input type="text" class="form-control" id="editArtists" required>
+						</div>
+						<div class="mb-3">
+							<label for="editTrackLabels" class="form-label">Track Labels</label>
+							<input type="text" class="form-control" id="editTrackLabels">
+						</div>
+						<div class="mb-3">
+							<label for="editBandComposition" class="form-label">Band Composition</label>
+							<input type="text" class="form-control" id="editBandComposition">
+						</div>
+						<div class="mb-3">
+							<label for="editAlbumArt" class="form-label">Album Art (Base64)</label>
+							<input type="file" class="form-control" id="editAlbumArt">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="saveAlbumChanges()">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- script for load GET function -->
+	<script>
+		window.onload = function () {
+			fetchAlbums();
+		};
+	</script>
+
+<!-- script for POST function -->
+	<script>
+		document.getElementById('albumForm').addEventListener('submit', async function (event) {
+			event.preventDefault();
+
+			// Get form data
+			const albumName = document.getElementById('albumName').value;
+			const albumYear = document.getElementById('albumYear').value;
+			const genre = document.getElementById('genre').value;
+			const artists = document.getElementById('artists').value;
+			const trackLabels = document.getElementById('trackLabels').value;
+			const bandComposition = document.getElementById('bandComposition').value;
+			const fileInput = document.getElementById('validatedCustomFile');
+
+			// Convert image to base64
+			let imageBase64 = '';
+			if (fileInput.files.length > 0) {
+				imageBase64 = await toBase64(fileInput.files[0]);
+			}
+
+			// Create request body
+			const albumData = {
+				AlbumName: albumName,
+				AlbumYear: albumYear,
+				Genre: genre,
+				Artists: artists,
+				TrackLabels: trackLabels,
+				BandComposition: bandComposition,
+				imageBase64: imageBase64 // Include the image in base64
+			};
+
+			// Make the POST request
+			fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(albumData)
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+					alert('Album added successfully!');
+
+					// Clear the form after successful submission
+					document.getElementById('albumForm').reset();
+
+					$('#exampleModal').modal('hide');
+
+
+                  // Refresh the albums table
+                   fetchAlbums();
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+					alert('Error adding album');
+				});
+		});
+
+		// Helper function to convert file to base64
+		function toBase64(file) {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = () => resolve(reader.result.split(',')[1]);
+				reader.onerror = error => reject(error);
+			});
+		}
+
+
+	</script>
+
+<!-- script for GET function and DELETE function -->
+
+	<script>
+
+
+		function fetchAlbums() {
+			fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album', {
+				method: 'GET'
+			})
+				.then(response => response.json())
+				.then(albums => {
+					console.log('Albums data:', albums); // Display fetched data in the console
+
+					const albumTableBody = document.getElementById('albumTableBody');
+					albumTableBody.innerHTML = '';  // Clear previous table rows
+
+					albums.forEach(album => {
+						const albumRow = document.createElement('tr');
+
+						// Album Name
+						const albumNameCell = document.createElement('td');
+						albumNameCell.innerText = album.AlbumName;
+						albumRow.appendChild(albumNameCell);
+
+						// Album Year
+						const albumYearCell = document.createElement('td');
+						albumYearCell.innerText = album.AlbumYear;
+						albumRow.appendChild(albumYearCell);
+
+						// Genre
+						const genreCell = document.createElement('td');
+						genreCell.innerText = album.Genre;
+						albumRow.appendChild(genreCell);
+
+						// Artists
+						const artistsCell = document.createElement('td');
+						artistsCell.innerText = album.Artists;
+						albumRow.appendChild(artistsCell);
+
+						// Track Labels
+						const trackLabelsCell = document.createElement('td');
+						trackLabelsCell.innerText = album.TrackLabels;
+						albumRow.appendChild(trackLabelsCell);
+
+						// Band Composition
+						const bandCompositionCell = document.createElement('td');
+						bandCompositionCell.innerText = album.BandComposition;
+						albumRow.appendChild(bandCompositionCell);
+
+						// Album Image
+						const imageCell = document.createElement('td');
+						const albumImage = document.createElement('img');
+						albumImage.src = album.AlbumArtURL;
+						albumImage.alt = 'Album Art';
+						albumImage.style.width = '50px'; // Set image size
+						imageCell.appendChild(albumImage);
+						albumRow.appendChild(imageCell);
+
+						// Update Button
+						const updateCell = document.createElement('td');
+						const updateButton = document.createElement('button');
+						updateButton.innerText = 'Update';
+						updateButton.onclick = () => openUpdateModal(album);
+						updateCell.appendChild(updateButton);
+						albumRow.appendChild(updateCell);
+						
+
+						const deleteCell = document.createElement('td');
+                        const deleteButton = document.createElement('button');
+                        deleteButton.innerText = 'Delete';
+                        deleteButton.onclick = () => {
+                       if (confirm('Are you sure you want to delete this album?')) {
+                        deleteAlbum(album.album_id);  // Calls the deleteAlbum function
+                        }
+                    };
+                    deleteCell.appendChild(deleteButton);
+                    albumRow.appendChild(deleteCell);
+
+
+						// Append the row to the table body
+						albumTableBody.appendChild(albumRow);
+					});
+				})
+				.catch(error => {
+					console.error('Error fetching albums:', error);
+				});
+
+				 // Delete an album
+				 function deleteAlbum(album_id) {
+        fetch(`https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ album_id: album_id })  // Passing the album_id to the delete request
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Album deleted successfully!');
+                fetchAlbums();  // Refresh the table after deletion
+            } else {
+                alert('Failed to delete album.');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting album:', error);
+        });
+    }
+
+    // Call fetchAlbums on page load to populate the table
+    document.addEventListener('DOMContentLoaded', fetchAlbums);
+
+		}
+
+
+	</script>
+	<!-- script for UPDATE function model to view -->
+	<script>
+		function openUpdateModal(album) {
+			// Set the album details in the modal fields
+			document.getElementById('editAlbumId').value = album.album_id;
+			document.getElementById('editAlbumName').value = album.AlbumName;
+			document.getElementById('editAlbumYear').value = album.AlbumYear;
+			document.getElementById('editGenre').value = album.Genre;
+			document.getElementById('editArtists').value = album.Artists;
+			document.getElementById('editTrackLabels').value = album.TrackLabels;
+			document.getElementById('editBandComposition').value = album.BandComposition;
+
+			// Show the modal
+			const editModal = new bootstrap.Modal(document.getElementById('editAlbumModal'));
+			editModal.show();
+		}
+	</script>
+
+<!-- script for UPDATE function -->
+	<script>
+		function saveAlbumChanges() {
+    const albumId = document.getElementById('editAlbumId').value;
+    const albumName = document.getElementById('editAlbumName').value;
+    const albumYear = document.getElementById('editAlbumYear').value;
+    const genre = document.getElementById('editGenre').value;
+    const artists = document.getElementById('editArtists').value;
+    const trackLabels = document.getElementById('editTrackLabels').value;
+    const bandComposition = document.getElementById('editBandComposition').value;
+    
+    // Get the album art if a new one is uploaded
+    const albumArtFile = document.getElementById('editAlbumArt').files[0];
+    let albumArtBase64 = null;
+    
+    if (albumArtFile) {
+        const reader = new FileReader();
+        reader.readAsDataURL(albumArtFile);
+        reader.onloadend = () => {
+            albumArtBase64 = reader.result.split(',')[1]; // Extract base64 data after "data:image/png;base64,"
+
+            // Now make the API request
+            updateAlbum(albumId, albumName, albumYear, genre, artists, trackLabels, bandComposition, albumArtBase64);
+        };
+    } else {
+        updateAlbum(albumId, albumName, albumYear, genre, artists, trackLabels, bandComposition, null);
+    }
+}
+
+function updateAlbum(albumId, albumName, albumYear, genre, artists, trackLabels, bandComposition, albumArtBase64) {
+    const albumData = {
+        album_id: albumId,
+        AlbumName: albumName,
+        AlbumYear: albumYear,
+        Genre: genre,
+        Artists: artists,
+        TrackLabels: trackLabels,
+        BandComposition: bandComposition,
+        AlbumArtURL: albumArtBase64
+    };
+
+    fetch('https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin/album', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(albumData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Hide the modal
+        const editModal = bootstrap.Modal.getInstance(document.getElementById('editAlbumModal'));
+        editModal.hide();
+
+        // Refresh the album table
+        fetchAlbums();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+	</script>
+
+<!-- script for DELETE function -->
+<!-- <script>
+	function deleteAlbum(album_id) {
+    const confirmation = confirm('Are you sure you want to delete this album?');
+    if (confirmation) {
+        console.log("Deleting Album with ID:", album_id);
+
+        fetch(`https://ce6gjpszo8.execute-api.us-east-1.amazonaws.com/admin2/album/${album_id}`, {  // Use backticks here
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to delete album');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Album deleted successfully!');
+            fetchAlbums();  // Refresh albums after deletion
+        })
+        .catch(error => {
+            console.error('Error deleting album:', error);
+            alert('Error: Failed to delete the album. Please try again.');
+        });
+    }
+}
+
+
+
+</script> -->
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- //<script src="admin.js"></script>    -->
+
+
+</body>
+
+</html>
