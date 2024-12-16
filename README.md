@@ -4,3 +4,6 @@ DreamStreamer is a AI-driven music streaming service that provides personalized 
 
 # Technology Used
 Frontend development HTML, CSS and Javascript for responsive styling Framer Motion for animations AWS Services for backend services
+
+
+# AWS Solution Design Diagram for DreamStreamer
